@@ -582,7 +582,45 @@ img { max-width: 100%; display: block; }
   font-style: normal;
   line-height: 1.7;
   color: var(--ink-2);
-  margin-bottom: 1.5rem;
+  margin-bottom: 1.75rem;
+}
+.contact__email-title { margin-top: 0; }
+.contact__email {
+  display: flex; align-items: center; gap: .75rem; flex-wrap: wrap;
+}
+.contact__email-link {
+  font-size: 1.02rem;
+  color: var(--accent);
+  text-decoration: none;
+  border-bottom: 1px solid var(--line-2);
+  padding-bottom: 2px;
+  word-break: break-all;
+  transition: border-color .18s var(--ease);
+}
+.contact__email-link:hover { border-bottom-color: var(--accent); }
+.contact__copy {
+  -webkit-appearance: none; appearance: none;
+  display: inline-flex; align-items: center; gap: .4rem;
+  font-family: var(--ff-sans); font-size: .78rem; font-weight: 600;
+  color: var(--ink-2);
+  background: transparent;
+  border: 1px solid var(--line-2);
+  border-radius: var(--r);
+  padding: .3rem .6rem;
+  cursor: pointer;
+  transition: color .18s var(--ease), border-color .18s var(--ease), background-color .18s var(--ease);
+}
+.contact__copy:hover { color: var(--ink); border-color: var(--ink-3); }
+.contact__copy.is-copied {
+  color: var(--accent); border-color: var(--accent);
+  background: var(--accent-wash);
+}
+.contact__copy-icon {
+  width: 13px; height: 13px; fill: none; stroke: currentColor;
+  stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round;
+}
+.contact__email-hint {
+  margin: .7rem 0 0; font-size: .82rem; color: var(--ink-3);
 }
 .contact__links { list-style: none; margin: 0; padding: 0; display: grid; gap: .1rem; }
 .contact__links li { border-bottom: 1px solid var(--line); }

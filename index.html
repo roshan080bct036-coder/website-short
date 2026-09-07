@@ -199,7 +199,16 @@
       <div class="contact__col">
         <h3 class="meta-block__title">Address</h3>
         <address class="contact__address" id="contactAddress"></address>
-        <a class="btn btn--solid" id="contactEmail" href="#">Email Professor Dhakal</a>
+
+        <h3 class="meta-block__title contact__email-title">Email</h3>
+        <div class="contact__email">
+          <a class="contact__email-link" id="contactEmail" href="#">&nbsp;</a>
+          <button class="contact__copy" id="contactCopy" type="button">
+            <svg class="contact__copy-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg>
+            <span class="contact__copy-label">Copy</span>
+          </button>
+        </div>
+        <p class="contact__email-hint" id="contactEmailHint" hidden>Copied to clipboard</p>
       </div>
       <div class="contact__col">
         <h3 class="meta-block__title">Profiles</h3>

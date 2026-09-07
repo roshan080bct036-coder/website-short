@@ -246,7 +246,11 @@
       addr.innerHTML = c.address.map(function (l) { return l; }).join("<br>");
     }
     var mail = $("#contactEmail");
-    if (mail && c.email) mail.href = "mailto:" + c.email;
+    if (mail && c.email) {
+      mail.href = "mailto:" + c.email;
+      mail.textContent = c.email;
+    }
+    initEmailCopy(c.email);
     var links = $("#contactLinks");
     if (links && c.links) {
       c.links.forEach(function (lnk) {
@@ -255,6 +259,66 @@
         links.appendChild(li);
       });
     }
+  }
+
+  function initEmailCopy(email) {
+    var btn = $("#contactCopy");
+    var hint = $("#contactEmailHint");
+    if (!btn || !email) return;
+    var label = btn.querySelector(".contact__copy-label");
+    var timer;
+
+    function flash(msg, ok) {
+      if (label) label.textContent = ok ? "Copied" : "Copy";
+      btn.classList.toggle("is-copied", !!ok);
+      if (hint) { hint.textContent = msg; hint.hidden = false; }
+      clearTimeout(timer);
+      timer = setTimeout(function () {
+        if (label) label.textContent = "Copy";
+        btn.classList.remove("is-copied");
+        if (hint) hint.hidden = true;
+      }, 2400);
+    }
+
+    function selectEmailText() {
+      var link = $("#contactEmail");
+      if (!link || !window.getSelection || !document.createRange) return;
+      var sel = window.getSelection();
+      var range = document.createRange();
+      range.selectNodeContents(link);
+      sel.removeAllRanges();
+      sel.addRange(range);
+    }
+
+    function legacyCopy() {
+      var ok = false;
+      try {
+        var t = document.createElement("textarea");
+        t.value = email;
+        t.setAttribute("readonly", "");
+        t.style.cssText = "position:absolute;left:-9999px;top:0";
+        document.body.appendChild(t);
+        t.select();
+        ok = document.execCommand("copy");
+        document.body.removeChild(t);
+      } catch (e) { ok = false; }
+      if (ok) {
+        flash("Copied to clipboard", true);
+      } else {
+        selectEmailText();
+        flash("Address selected — press Ctrl+C (or Cmd+C) to copy", false);
+      }
+    }
+
+    btn.addEventListener("click", function () {
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(email).then(function () {
+          flash("Copied to clipboard", true);
+        }).catch(legacyCopy);
+      } else {
+        legacyCopy();
+      }
+    });
   }
 
   function renderFooter() {
