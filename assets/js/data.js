@@ -16,7 +16,7 @@ window.SITE = {
   nameDevanagari: "दुबिनन्द ढकाल", /* TODO: confirm preferred Devanagari spelling */
   role: "Documentary and descriptive linguist",
   tagline:
-    "Two decades documenting the lesser-described Indo-Aryan and Tibeto-Burman languages of Nepal and the Himalaya.",
+    "I have spent two decades documenting the lesser-described Indo-Aryan and Tibeto-Burman languages of Nepal and the Himalaya.",
 
   /* ---- Metrics band (Google Scholar, September 2026) ------------------- */
   metrics: [
@@ -28,11 +28,11 @@ window.SITE = {
   metricsNote: "Citation figures: Google Scholar, September 2026.",
 
   /* ---- About --------------------------------------------------------------
-     Written in the third person, in the style of a faculty profile.        */
+     Written in the first person, as a personal statement.                  */
   about: [
-    "Dubi Nanda Dhakal is a professor of linguistics at the Central Department of Linguistics, Tribhuvan University, and Dean of the university's Faculty of Humanities and Social Sciences. For close to twenty years he has documented the lesser-described Indo-Aryan and Tibeto-Burman languages of Nepal, producing reference grammars, dictionaries and annotated text collections for communities whose languages carry little or no written record.",
-    "His work joins sustained fieldwork with descriptive and typological analysis. Recurring threads are morphology, case and agreement systems, adjective and kinship classes, and the structural effects of long-term contact between Nepali and the country's minority languages. More recent projects extend this comparative work into computational phylogenetics, reconstructing the internal history of the South-Western Tibetic languages.",
-    "He earned his PhD in linguistics from Tribhuvan University in 2011, following an early appointment as research assistant on the Endangered Languages Documentation Programme's project on Baram. He has prepared language surveys and reference materials for the Language Commission of Nepal, the Nepal Academy, the University Grants Commission and the Centre for Nepal and Asian Studies, and contributes regularly to debate on multilingual and mother-tongue education."
+    "My work is the documentation of Nepal's lesser-described Indo-Aryan and Tibeto-Burman languages. For close to twenty years I have written reference grammars, dictionaries and annotated text collections for communities whose languages carry little or no written record. I teach at the Central Department of Linguistics, Tribhuvan University, where I am a professor of linguistics and currently Dean of the Faculty of Humanities and Social Sciences.",
+    "I combine sustained fieldwork with descriptive and typological analysis. The threads that recur across my work are morphology, case and agreement systems, adjective and kinship classes, and the structural effects of long contact between Nepali and the country's minority languages. More recently I have extended this comparative work into computational phylogenetics, reconstructing the internal history of the South-Western Tibetic languages.",
+    "I earned my PhD in linguistics from Tribhuvan University in 2011, after an early appointment as research assistant on the Endangered Languages Documentation Programme's project on Baram. I have prepared language surveys and reference materials for the Language Commission of Nepal, the Nepal Academy, the University Grants Commission and the Centre for Nepal and Asian Studies, and I take part regularly in debate on multilingual and mother-tongue education."
   ],
 
   education: [
@@ -128,7 +128,7 @@ window.SITE = {
       years: "2007-2011",
       title: "Documentation of Baram",
       org: "Endangered Languages Documentation Programme (ELDP), SOAS University of London",
-      body: "Research assistant on the LEDBL project, producing a reference grammar, a trilingual dictionary and an ethnographic sketch of a near-extinct language of Gorkha district."
+      body: "I worked as research assistant on the LEDBL project, producing a reference grammar, a trilingual dictionary and an ethnographic sketch of a near-extinct language of Gorkha district."
     },
     {
       years: "2012-2018",
@@ -152,7 +152,7 @@ window.SITE = {
 
   /* ---- Teaching ---------------------------------------------------- */
   teaching:
-    "At the Central Department of Linguistics, Dhakal teaches and supervises MA, MPhil and PhD students, and has advised theses on under-described languages of Nepal. He mentors early-career documentary linguists and has led fieldwork training for community researchers.",
+    "At the Central Department of Linguistics I teach and supervise MA, MPhil and PhD students, and have advised theses on under-described languages of Nepal. I mentor early-career documentary linguists and have led fieldwork training for community researchers.",
   teachingAreas: [
     "Field methods", "Descriptive grammar writing", "Morphology",
     "Linguistic typology", "Language documentation", "Historical linguistics",
