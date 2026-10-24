@@ -32,19 +32,30 @@ window.SITE = {
   about: [
     "My work is the documentation of Nepal's lesser-described Indo-Aryan and Tibeto-Burman languages. For close to twenty years I have written reference grammars, dictionaries and annotated text collections for communities whose languages carry little or no written record. I teach at the Central Department of Linguistics, Tribhuvan University, where I am a professor of linguistics and currently Dean of the Faculty of Humanities and Social Sciences.",
     "I combine sustained fieldwork with descriptive and typological analysis. The threads that recur across my work are morphology, case and agreement systems, adjective and kinship classes, and the structural effects of long contact between Nepali and the country's minority languages. More recently I have extended this comparative work into computational phylogenetics, reconstructing the internal history of the South-Western Tibetic languages.",
-    "I earned my PhD in linguistics from Tribhuvan University in 2011, after an early appointment as research assistant on the Endangered Languages Documentation Programme's project on Baram. I have prepared language surveys and reference materials for the Language Commission of Nepal, the Nepal Academy, the University Grants Commission and the Centre for Nepal and Asian Studies, and I take part regularly in debate on multilingual and mother-tongue education."
+    "I earned my PhD in Linguistics from Tribhuvan University in 2011. I have prepared language surveys and reference materials for the Language Commission of Nepal, the Nepal Academy, the University Grants Commission, the Centre for Nepal and Asian Studies, Tribhuvan University, Nepal Sanskrit University, and the National Foundation for the Development of Indigenous Nationalities (NFDIN), Nepal. I take part regularly in debates on multilingual and mother-tongue education. I have been involved in research supported by international funding agencies, including the Endangered Languages Documentation Programme (ELDP; formerly at SOAS, University of London, now in Germany), the National Science Foundation (USA), the Endangered Languages Fund (USA), and the Society for Endangered Languages (GbS, Germany). I was the lead author in analyzing the data related to language in the 2021 Census of Nepal, published as Languages in Nepal (2025) by the National Statistics Office, with Tara Mani Rai. I have also collaborated and published with scholars from Nepal and abroad."
   ],
 
   education: [
     { title: "PhD, Linguistics", org: "Tribhuvan University", year: "2011" },
-    { title: "MA, Linguistics", org: "Tribhuvan University", year: "" },
-    { title: "MA, English", org: "Tribhuvan University", year: "" }
+    { title: "MA, Linguistics", org: "Tribhuvan University", year: "2006" },
+    { title: "MA, English", org: "Tribhuvan University", year: "1996" },
+    { title: "BA, English & Economics", org: "Tribhuvan University", year: "1992" }
+  ],
+
+  training: [
+    { title: "Putting Fieldwork on Indigenous Languages in New Uses (PFLLNU)", org: "University of Campinas (Unicamp), Campinas", year: "2016" },
+    { title: "Institute on Field Linguistics and Language Documentation", org: "University of California at Santa Barbara, USA", year: "2007" }
   ],
 
   appointments: [
     { title: "Professor of Linguistics", org: "Central Department of Linguistics, Tribhuvan University", year: "" },
-    { title: "Dean, Faculty of Humanities and Social Sciences", org: "Tribhuvan University", year: "" },
-    { title: "Research Assistant, LEDBL project", org: "Endangered Languages Documentation Programme, SOAS University of London", year: "2007-2011" }
+    { title: "Dean, Faculty of Humanities and Social Sciences", org: "Tribhuvan University", year: "From December 2024 to date" },
+    { title: "Member, Executive Council", org: "Tribhuvan University", year: "January 2025 to April 2026" },
+    { title: "Acting Rector", org: "Tribhuvan University", year: "April 2025 to July 2025" },
+    { title: "Acting Dean, Faculty of Humanities and Social Sciences", org: "Tribhuvan University", year: "August 2024 to December 2024" },
+    { title: "Assistant Dean, Faculty of Humanities and Social Sciences", org: "Tribhuvan University", year: "August 2019 to September 2024" },
+    { title: "Head, Central Department of Linguistics", org: "Tribhuvan University", year: "January 2018 to July 2020" },
+    { title: "Assistant Lecturer", org: "Tribhuvan University", year: "October 1998" }
   ],
 
   /* ---- Research focus ------------------------------------------------- */
@@ -77,7 +88,7 @@ window.SITE = {
 
   /* ---- Fieldwork: languages worked on -------------------------------- */
   fieldworkIntro:
-    "Field and descriptive work spanning more than twenty languages, from the Tarai plains to the high valleys of the Nepal Himalaya.",
+    "Field and descriptive work spanning more than twenty languages, from the Tarai plains to the high valleys of the Nepal Himalaya, with sustained engagement in indigenous and minority-language documentation.",
 
   languageGroups: [
     {
@@ -93,7 +104,7 @@ window.SITE = {
         { name: "Lhomi", note: "Causative constructions" },
         { name: "Yohlmo", note: "Sketch grammar" },
         { name: "Manang Gurung", note: "Differential argument marking" },
-        { name: "Nar", note: "Referential density study" },
+        { name: "Nar-Phu", note: "Referential density study" },
         { name: "Surel", note: "Sociolinguistic survey" },
         { name: "Jirel", note: "Sociolinguistic survey" }
       ]

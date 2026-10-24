@@ -67,6 +67,16 @@
         edu.appendChild(li);
       });
     }
+    var training = $("#trainingList");
+    if (training && S.training) {
+      S.training.forEach(function (t) {
+        var li = el("li");
+        li.appendChild(el("span", { class: "meta-list__t", text: t.title }));
+        li.appendChild(el("span", { class: "meta-list__s", text: t.org }));
+        if (t.year) li.appendChild(el("span", { class: "meta-list__y", text: t.year }));
+        training.appendChild(li);
+      });
+    }
     var app = $("#appointmentsList");
     if (app && S.appointments) {
       S.appointments.forEach(function (a) {
@@ -108,10 +118,6 @@
         group.appendChild(tags);
         host.appendChild(group);
       });
-    }
-    var reg = $("#regionList");
-    if (reg && S.regions) {
-      S.regions.forEach(function (r) { reg.appendChild(el("li", { text: r })); });
     }
   }
 
