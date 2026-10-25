@@ -4,20 +4,36 @@ A single-page academic portfolio for **Prof. Dr. Dubi Nanda Dhakal**, professor 
 linguistics at the Central Department of Linguistics, Tribhuvan University.
 
 Static frontend only. No framework, no build step, no dependencies to install.
-Open `index.html` in a browser and it runs.
+Open `index.html` in a browser and it runs. The content editor is at `admin.html`.
 
 ```
 D:\MamaWebsite
 ├── index.html            # page structure
+├── admin.html            # visual content editor with live preview
 ├── assets
-│   ├── css/styles.css     # all styling (light + dark themes)
+│   ├── css/styles.css     # portfolio styling (light + dark themes)
+│   ├── css/admin.css      # content editor styling
 │   ├── js/data.js         # ← ALL CONTENT lives here. Edit this to update the site.
 │   ├── js/main.js          # rendering + interactions
+│   ├── js/admin.js         # editor, local drafts, preview and export
 │   └── img/                # drop the portrait photo here (see img/README.txt)
 └── README.md
 ```
 
 ## Editing content
+
+The editor at `admin.html` lets you change portfolio content, reorder or add
+entries, manage publications, adjust section visibility and colors, and preview
+the site at desktop or mobile width. Drafts are saved in the current browser.
+
+This is a static website, so the editor cannot publish files to the web host. To
+publish a draft, choose **Download site data** in the editor, replace
+`assets/js/data.js` with the downloaded file, and redeploy the site. Use
+**Export backup** and **Import backup** to move a draft between browsers.
+
+The editor has no account or password system. Anyone with access to the editor
+URL can change the draft in their own browser, but changes reach the public site
+only when the exported data file is deployed.
 
 Everything shown on the page comes from **`assets/js/data.js`**:
 bio, metrics, research areas, the list of languages, projects, and the full
