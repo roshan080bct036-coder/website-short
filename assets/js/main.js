@@ -7,6 +7,16 @@
   "use strict";
 
   var S = window.SITE || {};
+  try {
+    var savedDraft = localStorage.getItem("portfolioDraft");
+    if (savedDraft) {
+      var parsedDraft = JSON.parse(savedDraft);
+      if (parsedDraft && typeof parsedDraft === "object" && !Array.isArray(parsedDraft)) {
+        S = Object.assign({}, S, parsedDraft);
+        window.SITE = S;
+      }
+    }
+  } catch (e) {}
   var $ = function (sel, ctx) { return (ctx || document).querySelector(sel); };
   var $$ = function (sel, ctx) { return Array.prototype.slice.call((ctx || document).querySelectorAll(sel)); };
 
@@ -23,19 +33,90 @@
     return node;
   }
 
-  function boldAuthor(str) {
-    return String(str).replace(/D\.\sN\.\sDhakal/g, "<strong>D. N. Dhakal</strong>");
+  function externalUrl(value) {
+    if (!value) return "#";
+    try {
+      var url = new URL(value, window.location.href);
+      return url.protocol === "http:" || url.protocol === "https:" ? url.href : "#";
+    } catch (e) { return "#"; }
   }
 
   /* ---------------------------------------------------------------- Hero */
   function renderHero() {
+    if ($("#heroName") && S.name) $("#heroName").textContent = S.name;
     if ($("#siteRole") && S.role) $("#siteRole").textContent = S.role;
     if ($("#siteTagline")) $("#siteTagline").textContent = S.tagline || "";
     if ($("#siteDeva")) $("#siteDeva").textContent = S.nameDevanagari || "";
+    if ($(".wordmark__name")) $(".wordmark__name").textContent = S.name || "";
+    if ($(".wordmark__role")) $(".wordmark__role").textContent = S.role || "";
+    if ($("#portraitImg") && S.portraitUrl) $("#portraitImg").src = S.portraitUrl;
+    if ($(".site-footer__name")) $(".site-footer__name").textContent = S.name || "";
+    if ($(".site-footer__role")) $(".site-footer__role").textContent = S.role || "";
+    var copy = S.copy || {};
+    var heroPublications = $("#heroPublications");
+    if (heroPublications && copy.viewPublications) heroPublications.textContent = copy.viewPublications;
     var sch = $("#heroScholar");
-    if (sch && S.scholarUrl) sch.href = S.scholarUrl;
+    if (sch && S.scholarUrl) sch.href = externalUrl(S.scholarUrl);
+    if (sch && copy.heroScholar && sch.firstChild) sch.firstChild.nodeValue = " " + copy.heroScholar + " ";
     var pl = $("#pubScholarLink");
-    if (pl && S.scholarUrl) pl.href = S.scholarUrl;
+    if (pl && S.scholarUrl) pl.href = externalUrl(S.scholarUrl);
+    if (pl && copy.fullScholar && pl.firstChild) pl.firstChild.nodeValue = " " + copy.fullScholar + " ";
+  }
+
+  function renderSiteSettings() {
+    var titles = S.sectionTitles || {};
+    var titleMap = {
+      about: "#aboutHeading", research: "#researchHeading", fieldwork: "#fieldworkHeading",
+      projects: "#projectsHeading", publications: "#pubHeading", teaching: "#teachHeading",
+      contact: "#contactHeading"
+    };
+    Object.keys(titleMap).forEach(function (key) {
+      if ($(titleMap[key]) && titles[key]) $(titleMap[key]).textContent = titles[key];
+    });
+    ["education", "training", "appointments"].forEach(function (key, index) {
+      var heading = $(".about__meta .meta-block:nth-child(" + (index + 1) + ") .meta-block__title");
+      if (heading && titles[key]) heading.textContent = titles[key];
+    });
+
+    var appearance = S.appearance || {};
+    var root = document.documentElement;
+    var variables = {
+      accent: "--accent", accentHover: "--accent-2", paper: "--paper",
+      surface: "--surface-2", ink: "--ink", inkMuted: "--ink-2",
+      inkSubtle: "--ink-3", border: "--line"
+    };
+    Object.keys(variables).forEach(function (key) {
+      if (appearance[key]) root.style.setProperty(variables[key], appearance[key]);
+    });
+
+    var visibility = S.visibility || {};
+    Object.keys(visibility).forEach(function (key) {
+      if (key === "metrics") return;
+      var section = $("#" + key);
+      if (section) section.hidden = visibility[key] === false;
+    });
+    if ($(".metrics")) $(".metrics").hidden = visibility.metrics === false;
+  }
+
+  function renderNavigation() {
+    var navItems = S.navigation || [];
+    var visibility = S.visibility || {};
+    [["#navList", "li"], [".site-footer__nav", null]].forEach(function (target) {
+      var host = $(target[0]);
+      if (!host) return;
+      host.innerHTML = "";
+      navItems.forEach(function (item) {
+        if (!item.id || visibility[item.id] === false) return;
+        var link = el("a", { href: "#" + item.id, text: item.label || item.id });
+        if (target[1]) {
+          var li = el(target[1]);
+          li.appendChild(link);
+          host.appendChild(li);
+        } else {
+          host.appendChild(link);
+        }
+      });
+    });
   }
 
   /* ------------------------------------------------------------- Metrics */
@@ -154,14 +235,20 @@
 
     var main = el("div", { class: "pub__main" });
     var title = el("h3", { class: "pub__title" });
-    if (p.url) {
-      var a = el("a", { href: p.url, target: "_blank", rel: "noopener", text: p.title });
+    if (p.url && externalUrl(p.url) !== "#") {
+      var a = el("a", { href: externalUrl(p.url), target: "_blank", rel: "noopener", text: p.title });
       title.appendChild(a);
     } else {
       title.textContent = p.title;
     }
     main.appendChild(title);
-    main.appendChild(el("p", { class: "pub__meta" }, boldAuthor(p.authors) + " &nbsp;·&nbsp; " + p.venue));
+    var meta = el("p", { class: "pub__meta" });
+    String(p.authors || "").split(/(D\.\sN\.\sDhakal)/g).forEach(function (part) {
+      if (part === "D. N. Dhakal") meta.appendChild(el("strong", { text: part }));
+      else meta.appendChild(document.createTextNode(part));
+    });
+    meta.appendChild(document.createTextNode(" \u00b7 " + (p.venue || "")));
+    main.appendChild(meta);
     li.appendChild(main);
 
     var badges = el("div", { class: "pub__badges" });
@@ -191,13 +278,19 @@
     showing.forEach(function (p) { ol.appendChild(pubItem(p)); });
 
     var isEmpty = showing.length === 0;
-    if (empty) empty.hidden = !isEmpty;
+    if (empty) {
+      empty.hidden = !isEmpty;
+      if (S.copy && S.copy.noPublications) empty.textContent = S.copy.noPublications;
+    }
     ol.hidden = isEmpty;
 
     if (pubState.filter === "all") {
       toggle.hidden = false;
       toggle.setAttribute("aria-expanded", String(pubState.expanded));
-      toggle.textContent = pubState.expanded ? "Show selected only" : "Show all publications";
+      var copy = S.copy || {};
+      toggle.textContent = pubState.expanded
+        ? (copy.showSelected || "Show selected only")
+        : (copy.showAll || "Show all publications");
       count.textContent = pubState.expanded
         ? "Showing all " + all.length
         : "Showing " + showing.length + " selected of " + all.length;
@@ -210,6 +303,15 @@
   function initPublications() {
     renderPubList();
     $$(".chip").forEach(function (chip) {
+      var copy = S.copy || {};
+      var filterLabels = {
+        all: copy.filterAll,
+        book: copy.filterBooks,
+        article: copy.filterArticles,
+        report: copy.filterReports,
+        conference: copy.filterConference
+      };
+      if (filterLabels[chip.getAttribute("data-filter")]) chip.textContent = filterLabels[chip.getAttribute("data-filter")];
       chip.addEventListener("click", function () {
         $$(".chip").forEach(function (c) {
           c.classList.remove("is-active");
@@ -249,7 +351,11 @@
     var c = S.contact || {};
     var addr = $("#contactAddress");
     if (addr && c.address) {
-      addr.innerHTML = c.address.map(function (l) { return l; }).join("<br>");
+      addr.textContent = "";
+      c.address.forEach(function (line, index) {
+        if (index) addr.appendChild(document.createElement("br"));
+        addr.appendChild(document.createTextNode(line));
+      });
     }
     var mail = $("#contactEmail");
     if (mail && c.email) {
@@ -261,7 +367,7 @@
     if (links && c.links) {
       c.links.forEach(function (lnk) {
         var li = el("li");
-        li.appendChild(el("a", { href: lnk.url, target: "_blank", rel: "noopener", text: lnk.label }));
+        li.appendChild(el("a", { href: externalUrl(lnk.url), target: "_blank", rel: "noopener", text: lnk.label }));
         links.appendChild(li);
       });
     }
@@ -330,9 +436,8 @@
   function renderFooter() {
     var fine = $("#footerFine");
     if (fine) {
-      var yr = new Date().getFullYear();
-      fine.textContent = "© " + yr + " Dubi Nanda Dhakal. Last updated September 2026. "
-        + "Citation data from Google Scholar.";
+      fine.textContent = "© " + new Date().getFullYear() + " " + (S.name || "")
+        + (S.footerNote ? ". " + S.footerNote : ".");
     }
   }
 
@@ -403,6 +508,8 @@
 
   /* ---------------------------------------------------------------- Boot */
   function boot() {
+    renderSiteSettings();
+    renderNavigation();
     renderHero();
     renderMetrics();
     renderAbout();

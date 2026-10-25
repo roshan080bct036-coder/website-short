@@ -17,6 +17,59 @@ window.SITE = {
   role: "Documentary and descriptive linguist",
   tagline:
     "I have spent two decades documenting the lesser-described Indo-Aryan and Tibeto-Burman languages of Nepal and the Himalaya.",
+  portraitUrl: "assets/img/dubi-nanda-dhakal.jpg",
+  navigation: [
+    { id: "about", label: "About" },
+    { id: "research", label: "Research" },
+    { id: "fieldwork", label: "Fieldwork" },
+    { id: "publications", label: "Publications" },
+    { id: "contact", label: "Contact" }
+  ],
+  sectionTitles: {
+    about: "About",
+    research: "Threads of research",
+    fieldwork: "Fieldwork and experience",
+    projects: "Selected projects",
+    publications: "Publications",
+    teaching: "Teaching and supervision",
+    contact: "Get in touch",
+    education: "Educational background",
+    training: "Training and field methods",
+    appointments: "Academic-administrative experience"
+  },
+  appearance: {
+    accent: "#28527a",
+    accentHover: "#1e4061",
+    paper: "#f4f6f8",
+    surface: "#e8edf1",
+    ink: "#161a1f",
+    inkMuted: "#414952",
+    inkSubtle: "#5e6773",
+    border: "#dce3ea"
+  },
+  visibility: {
+    metrics: true,
+    about: true,
+    research: true,
+    fieldwork: true,
+    projects: true,
+    publications: true,
+    teaching: true,
+    contact: true
+  },
+  footerNote: "Last updated September 2026. Citation data from Google Scholar.",
+  copy: {
+    viewPublications: "View publications",
+    heroScholar: "Google Scholar",
+    fullScholar: "Full list on Google Scholar",
+    showAll: "Show all publications",
+    showSelected: "Show selected only",
+    filterAll: "All",
+    filterBooks: "Books & dictionaries",
+    filterArticles: "Articles & chapters",
+    filterReports: "Reports & surveys",
+    filterConference: "Conference papers"
+  },
 
   /* ---- Metrics band (Google Scholar, September 2026) ------------------- */
   metrics: [
